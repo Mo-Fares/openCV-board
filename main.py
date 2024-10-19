@@ -121,7 +121,6 @@ while True:
     g = cv2.getTrackbarPos('Green', 'control')
     r = cv2.getTrackbarPos('Red', 'control')
     t = cv2.getTrackbarPos('pen_thickness', 'control')
-    # Added 1 to make range of imd_step_gap equal to [1, 30].
     imd_step_gap = (cv2.getTrackbarPos('Imd_step_gap', 'control')+1)/10
     
     intermediate_step_gap = imd_step_gap
@@ -183,8 +182,6 @@ while True:
                     for position, pen_color, pen_size in circles
                     if not is_position_out_of_bounds(position, top_left, bottom_right)
                 ]
-
-    ## Draws all stored circles
     for position, pen_color, pen_size in circles:
         frame = cv2.circle(frame, position, pen_size, pen_color, -1)
 
@@ -194,7 +191,6 @@ while True:
     cv2.putText(frame, f'FPS : {fps}', (w - 300, h - 20), font, fontScale, fontColor, lineType)
 
     cv2.imshow('output', frame)
-    # contol_image = img[:80, :]
     img[button[0]:button[1], button[2]:button[3]] = 180
     cv2.putText(img, 'Click_to_save_img', (148, 50), cv2.FONT_HERSHEY_TRIPLEX, 1.0, 0, 1)
     cv2.imshow('control', img)
